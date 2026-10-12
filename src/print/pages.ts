@@ -120,7 +120,7 @@ function coverRecto(ctx: Ctx, m: Metrics, links: LinkRect[]) {
   frame(ctx, { x: 56, y: 56, w: 1024 - 112, h: 1428 - 112 }, { color: 'rgba(138,106,58,0.55)', thickness: 1.5, shadow: false })
   frame(ctx, { x: 70, y: 70, w: 1024 - 140, h: 1428 - 140 }, { color: 'rgba(138,106,58,0.22)', thickness: 0.8, shadow: false })
 
-  tracked(ctx, 'Bhuvanesh · Shereya B', cx, 190, { align: 'center', color: C.bronze, size: 14, tracking: 6 })
+  tracked(ctx, 'A Portfolio in Eight Chapters', cx, 190, { align: 'center', color: C.bronze, size: 14, tracking: 6 })
   ornament(ctx, cx, 232, 220)
 
   font(ctx, 132, F.serif, 600)
@@ -1064,7 +1064,11 @@ export function renderPage(chapterIndex: number, side: Side, scale = 1): PageArt
   ctx.scale(scale, scale)
   ctx.textBaseline = 'alphabetic'
 
-  const m = metrics(side === 'recto' ? 'right' : 'left')
+  // A recto face is mapped with u = 0 at the spine, so its binding edge is the
+  // canvas's left side. A verso face is mirrored about the spine when the leaf
+  // turns (and un-mirrored by the texture flip), which puts its spine at the
+  // canvas's right side.
+  const m = metrics(side === 'recto' ? 'left' : 'right')
   const links: LinkRect[] = []
 
   const draw = side === 'recto' ? RECTO[chapter.id] : VERSO[chapter.id]

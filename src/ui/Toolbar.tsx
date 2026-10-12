@@ -80,8 +80,8 @@ export function Toolbar() {
   return (
     <div
       aria-hidden={!active}
-      className={`absolute inset-0 z-20 transition-opacity duration-500 ${
-        active ? 'opacity-100' : 'pointer-events-none opacity-0'
+      className={`pointer-events-none absolute inset-0 z-20 transition-opacity duration-500 ${
+        active ? 'opacity-100' : 'opacity-0'
       }`}
     >
       <div className="absolute left-5 top-5">
